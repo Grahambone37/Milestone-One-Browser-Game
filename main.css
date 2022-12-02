@@ -40,5 +40,22 @@ main {
 
 #water {
     background-color: darkturquoise;
-    min-height: 63vh;
+    min-height: 58vh;
+}
+
+#scoreboard {
+    background-color: blue;
+    min-height: 5vh;
+    color: salmon;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#fish {
+    text-align: left;
+}
+
+#goal-score {
+    text-align: right;
 }
