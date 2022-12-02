@@ -3,5 +3,21 @@ header {
     text-align: center;
 }
 
-body {
+main {
+    flex-flow: column nowrap
+}
+
+#sky {
+    background-color: lightskyblue;
+    min-height: 30vh;
+}
+
+#greenery {
+    background-color: darkgreen;
+    min-height: 18vh;
+}
+
+#water {
+    background-color: blue;
+    min-height: 50vh;
 }
