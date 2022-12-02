@@ -1,5 +1,5 @@
 
-header {
+* {
     text-align: center;
 }
 
@@ -9,15 +9,20 @@ main {
 
 #sky {
     background-color: lightskyblue;
-    min-height: 30vh;
+    min-height: 20vh;
+}
+
+#mountain {
+    background-color: rgb(65, 32, 9);
+    min-height: 2vh;
 }
 
 #greenery {
     background-color: darkgreen;
-    min-height: 18vh;
+    min-height: 13vh;
 }
 
 #water {
-    background-color: blue;
-    min-height: 50vh;
+    background-color: darkturquoise;
+    min-height: 63vh;
 }
