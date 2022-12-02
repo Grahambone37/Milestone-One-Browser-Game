@@ -8,12 +8,24 @@ main {
 }
 
 .sky-sun-sky {
-    flex-direction: row;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 4vh;
 }
 
 #sky {
     background-color: lightskyblue;
     min-height: 20vh;
+}
+
+.sky {
+    min-width: 40%;
+}
+
+.sun {
+    min-width: 20%;
 }
 
 #mountain {
