@@ -43,12 +43,22 @@
             <div id="mountain"></div>
             <div id="greenery"></div>
             <div id="water">
-
-                <button id="fish-button" type="button">Fish!</button>
-                <header>Hello World!</header>
+                <!--3 zones. top for header, middle for fishing zone-->
+                <div class="pond top-bot-pond">
+                    <header>Hello World!</header>
+                </div>
+                <div class="pond mid-pond">
+                    <div class="sides-of-ponds"></div>
+                    <div id="fishing-zone">
+                        <button id="fish-button" type="button">Fish!</button>
+                    </div>
+                    <div class="side-of-ponds"></div>
+                </div>
+                <div class="pond top-bot-pond"></div>
             </div>
             <div id="scoreboard">
-                <div id="fish">Fish Count: Smallfish:<span id="small-fish">0</span> / Mediumfish:<span id="medium-fish">0</span> / Bigfish:<span id="Bigfish">0</span></div>
+                <div id="fish">Fish Count: Smallfish:<span id="small-fish">0</span> / Mediumfish:<span
+                        id="medium-fish">0</span> / Bigfish:<span id="Bigfish">0</span></div>
                 <div id="goal-score">Goal:$75 / Score:$<span id="score">0</span></div>
             </div>
     </main>

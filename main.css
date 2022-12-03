@@ -7,11 +7,31 @@ main {
     flex-flow: column nowrap
 }
 
-.sky-sun-sky {
+.sky-sun-sky, .pond, #fishing-zone {
     display: flex;
     flex-flow: row nowrap;
     align-items: stretch;
     justify-content: center;
+}
+
+.top-bot-pond {
+    min-height: 20vh;
+}
+
+.mid-pond, #fishing-zone, .top-bot-pond, #scoreboard {
+    align-items: center;
+}
+
+.sides-of-pond {
+    min-width: 40%;
+}
+
+#fishing-zone {
+    min-height: 18vh;
+    min-width: 20%;
+}
+
+.sky-sun-sky {
     min-height: 4vh;
 }
 
@@ -49,7 +69,6 @@ main {
     color: salmon;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 #fish {
