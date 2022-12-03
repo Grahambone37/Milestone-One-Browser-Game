@@ -2,12 +2,11 @@ function main() {
     /*-----reference for backgroundchanges----
         let topSun = document.querySelector('.top');
         topSun.style.backgroundColor = 'yellow'
-        let fishZone = document.querySelector('#fishing-zone');
-        fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
-    */
+        */
 
     //querySelectors
 
+    let fishZone = document.querySelector('#fishing-zone');
     let btn = document.querySelector('#fish-button')
     let smallHTML = document.querySelector('#small-fish')
 
@@ -32,15 +31,22 @@ function main() {
     }
 
     function go() {
-        btn.innerHTML = 'Fish!!!'
+        if (clicked == false) {
+            btn.innerHTML = 'Fish!!!'
+            fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
+        }
     }
 
     function tooSoon() {
         clicked = true
+        btn.innerHTML = 'Too soon...'
     }
 
-    function updateScore() {
+    function updateAndReset() {
         score.innerHTML = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
+        fishZone.style.backgroundColor = 'darkturquoise'
+        btn.innerHTML = 'Caught!'
+        clicked = true
     }
 
     //function smallFishEncounter
@@ -48,9 +54,7 @@ function main() {
         if (clicked == false) {
             smallCount += 1
             smallHTML.innerHTML = smallCount
-            updateScore()
-            clicked = true
-            return
+            updateAndReset()
         }
     }
     async function smallFishEncounter() {
