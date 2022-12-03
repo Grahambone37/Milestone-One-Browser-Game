@@ -22,6 +22,7 @@ function main() {
 
     let add = 'add'
     let remove = 'remove'
+    let size;
 
     //miscellaneous functions
 
@@ -40,17 +41,17 @@ function main() {
             fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
         }
     }
-
-    function isTooSoon() {
-        clicked = true
-        btn.innerHTML = 'Too soon...'
-    }
-
+    
     function updateAndReset() {
         score.innerHTML = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
         fishZone.style.backgroundColor = 'darkturquoise'
         btn.innerHTML = 'Caught!'
         clicked = true
+    }
+
+    function isTooSoon() {
+        clicked = true
+        btn.innerHTML = 'Too soon...'
     }
 
     function tooSoon(addOrRemove) {
@@ -61,6 +62,17 @@ function main() {
         }
     }
 
+    function readyUp() {
+        ready()
+        clicked = false
+        tooSoon(add)
+    }
+
+    function timeToFish() {
+        go()
+        tooSoon(remove)
+    }
+    
     //function smallFishEncounter
     function smallClick() {
         if (clicked == false) {
@@ -70,13 +82,10 @@ function main() {
         }
     }
     async function smallFishEncounter() {
-        ready()
-        clicked = false
-        tooSoon(add)
+        readyUp()
         await sleep(3000)
         
-        go()
-        tooSoon(remove)
+        timeToFish()
         btn.addEventListener('click', smallClick)
         await sleep(2000)
 
