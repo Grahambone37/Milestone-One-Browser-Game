@@ -11,9 +11,13 @@ function main() {
     let btn = document.querySelector('#fish-button')
     let smallHTML = document.querySelector('#small-fish')
 
+    let score = document.querySelector('#score')
+
     //counts, etc.
 
     let smallCount = 0
+    let mediumCount = 0
+    let largeCount = 0
 
     let clicked = false
 
@@ -35,11 +39,16 @@ function main() {
         clicked = true
     }
 
+    function updateScore() {
+        score.innerHTML = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
+    }
+
     //function smallFishEncounter
     function smallClick() {
         if (clicked == false) {
             smallCount += 1
             smallHTML.innerHTML = smallCount
+            updateScore()
             clicked = true
             return
         }
