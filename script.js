@@ -6,16 +6,76 @@ function main() {
         fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
     */
 
-    //add a sleep function
+    //querySelectors
 
-    //function smallfishencounter
+    let btn = document.querySelector('#fish-button')
+    let smallHTML = document.querySelector('#small-fish')
 
-    //mediumfishencounter
+    //counts, etc.
 
-    //bigfishencounter
+    let smallCount = 0
+
+    let clicked = false
+
+    //miscellaneous functions
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function ready() {
+        btn.innerHTML = 'Ready...'
+    }
+
+    function go() {
+        btn.innerHTML = 'Fish!!!'
+    }
+
+    function tooSoon() {
+        clicked = true
+    }
+
+    //function smallFishEncounter
+    function smallClick() {
+        if (clicked == false) {
+            smallCount += 1
+            smallHTML.innerHTML = smallCount
+            clicked = true
+            return
+        }
+    }
+    async function smallFishEncounter() {
+        ready()
+        clicked = false
+        btn.addEventListener('click', tooSoon)
+        await sleep(3000)
+
+        go()
+        btn.removeEventListener('click', tooSoon)
+        btn.addEventListener('click', smallClick)
+        await sleep(2000)
+
+        ready()
+        btn.removeEventListener('click', smallClick)
+        await sleep(1500)
+    }
+    smallFishEncounter()
+
+    //mediumFishEncounter
+
+
+
+    //largeFishEncounter
+
+
 
     //function buttonpress = pick 1 of 3(eventually 4) of the fishencounters
 
+
+
     //playbuttonpress---sequence of 10-random-fish, then game ends
+
+
+
 }
 main()
