@@ -20,6 +20,9 @@ function main() {
 
     let clicked = false
 
+    let add = 'add'
+    let remove = 'remove'
+
     //miscellaneous functions
 
     function sleep(ms) {
@@ -27,6 +30,7 @@ function main() {
     }
 
     function ready() {
+        updateAndReset()
         btn.innerHTML = 'Ready...'
     }
 
@@ -37,7 +41,7 @@ function main() {
         }
     }
 
-    function tooSoon() {
+    function isTooSoon() {
         clicked = true
         btn.innerHTML = 'Too soon...'
     }
@@ -47,6 +51,14 @@ function main() {
         fishZone.style.backgroundColor = 'darkturquoise'
         btn.innerHTML = 'Caught!'
         clicked = true
+    }
+
+    function tooSoon(addOrRemove) {
+        if (addOrRemove == 'add') {
+            btn.addEventListener('click', isTooSoon)
+        } else if (addOrRemove == 'remove') {
+            btn.removeEventListener('click', isTooSoon)
+        }
     }
 
     //function smallFishEncounter
@@ -60,11 +72,11 @@ function main() {
     async function smallFishEncounter() {
         ready()
         clicked = false
-        btn.addEventListener('click', tooSoon)
+        tooSoon(add)
         await sleep(3000)
-
+        
         go()
-        btn.removeEventListener('click', tooSoon)
+        tooSoon(remove)
         btn.addEventListener('click', smallClick)
         await sleep(2000)
 
