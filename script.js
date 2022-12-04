@@ -144,11 +144,20 @@ function main() {
         btn.removeEventListener('click', largeClick)
         await sleep(5000)
     }
-    largeFishEncounter()
     
     //function buttonpress = pick 1 of 3(eventually 4) of the fishencounters
 
-
+    function fishGenerator() {
+        let fishSize = Math.floor(Math.random() * 3)
+        if (fishSize == 0) {
+            smallFishEncounter()
+        } else if (fishSize == 1) {
+            mediumFishEncounter()
+        } else if (fishSize == 2) {
+            largeFishEncounter()
+        }
+    }
+    fishGenerator()
 
     //playbuttonpress---sequence of 10-random-fish, then game ends
 
