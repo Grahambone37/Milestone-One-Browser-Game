@@ -6,9 +6,11 @@ function main() {
 
     //querySelectors
 
-    let fishZone = document.querySelector('#fishing-zone');
     let btn = document.querySelector('#fish-button')
+    let fishZone = document.querySelector('#fishing-zone');
     let smallHTML = document.querySelector('#small-fish')
+    let mediumHTML = document.querySelector('#medium-fish')
+    let largeHTML = document.querySelector('#large-fish')
 
     let score = document.querySelector('#score')
 
@@ -22,7 +24,8 @@ function main() {
 
     let add = 'add'
     let remove = 'remove'
-    let size;
+
+    btn.innerHTML = 'Start'
 
     //miscellaneous functions
 
@@ -74,6 +77,7 @@ function main() {
     }
     
     //function smallFishEncounter
+
     function smallClick() {
         if (clicked == false) {
             smallCount += 1
@@ -81,9 +85,10 @@ function main() {
             updateAndReset()
         }
     }
+
     async function smallFishEncounter() {
         readyUp()
-        await sleep(3000)
+        await sleep(2000)
         
         timeToFish()
         btn.addEventListener('click', smallClick)
@@ -93,16 +98,54 @@ function main() {
         btn.removeEventListener('click', smallClick)
         await sleep(1500)
     }
-    smallFishEncounter()
-
+    
     //mediumFishEncounter
 
+    function mediumClick() {
+        if (clicked == false) {
+            mediumCount += 1
+            mediumHTML.innerHTML = mediumCount
+            updateAndReset()
+        }
+    }
 
+    async function mediumFishEncounter() {
+        readyUp()
+        await sleep(500)
+        
+        timeToFish()
+        btn.addEventListener('click', mediumClick)
+        await sleep(1000)
 
+        ready()
+        btn.removeEventListener('click', mediumClick)
+        await sleep(1000)
+    }
+    
     //largeFishEncounter
+    
+    function largeClick() {
+        if (clicked == false) {
+            largeCount += 1
+            largeHTML.innerHTML = largeCount
+            updateAndReset()
+        }
+    }
 
+    async function largeFishEncounter() {
+        readyUp()
+        await sleep(5000)
+        
+        timeToFish()
+        btn.addEventListener('click', largeClick)
+        await sleep(500)
 
-
+        ready()
+        btn.removeEventListener('click', largeClick)
+        await sleep(5000)
+    }
+    largeFishEncounter()
+    
     //function buttonpress = pick 1 of 3(eventually 4) of the fishencounters
 
 
