@@ -19,8 +19,10 @@ function main() {
     let smallCount = 0
     let mediumCount = 0
     let largeCount = 0
+    let fishSize = 0
 
     let clicked = false
+    let iteration = 0
 
     let add = 'add'
     let remove = 'remove'
@@ -44,7 +46,7 @@ function main() {
             fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
         }
     }
-    
+
     function updateAndReset() {
         score.innerHTML = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
         fishZone.style.backgroundColor = 'darkturquoise'
@@ -75,7 +77,7 @@ function main() {
         go()
         tooSoon(remove)
     }
-    
+
     //function smallFishEncounter
 
     function smallClick() {
@@ -88,17 +90,18 @@ function main() {
 
     async function smallFishEncounter() {
         readyUp()
-        await sleep(2000)
-        
+        await sleep(1000)
+
         timeToFish()
         btn.addEventListener('click', smallClick)
         await sleep(2000)
 
         ready()
         btn.removeEventListener('click', smallClick)
-        await sleep(1500)
+        await sleep(500)
+        console.log('small')
     }
-    
+
     //mediumFishEncounter
 
     function mediumClick() {
@@ -112,18 +115,19 @@ function main() {
     async function mediumFishEncounter() {
         readyUp()
         await sleep(500)
-        
+
         timeToFish()
         btn.addEventListener('click', mediumClick)
         await sleep(1000)
 
         ready()
         btn.removeEventListener('click', mediumClick)
-        await sleep(1000)
+        await sleep(2000)
+        console.log('medium')
     }
-    
+
     //largeFishEncounter
-    
+
     function largeClick() {
         if (clicked == false) {
             largeCount += 1
@@ -134,34 +138,45 @@ function main() {
 
     async function largeFishEncounter() {
         readyUp()
-        await sleep(5000)
-        
+        await sleep(3000)
+
         timeToFish()
         btn.addEventListener('click', largeClick)
         await sleep(500)
 
         ready()
         btn.removeEventListener('click', largeClick)
-        await sleep(5000)
+        await sleep(0)
+        console.log('large')
     }
-    
+
     //function buttonpress = pick 1 of 3(eventually 4) of the fishencounters
-
     function fishGenerator() {
-        let fishSize = Math.floor(Math.random() * 3)
-        if (fishSize == 0) {
-            smallFishEncounter()
-        } else if (fishSize == 1) {
-            mediumFishEncounter()
-        } else if (fishSize == 2) {
-            largeFishEncounter()
-        }
+        return new Promise(function(resolve) {
+            fishSize = Math.floor(Math.random() * 3)
+            if (fishSize == 0) {
+                smallFishEncounter()
+            } else if (fishSize == 1) {
+                mediumFishEncounter()
+            } else if (fishSize == 2) {
+                largeFishEncounter()
+            }
+            iteration += 1
+            console.log(iteration)
+            return setTimeout(resolve, 5000)
+        })
     }
-    fishGenerator()
-
     //playbuttonpress---sequence of 10-random-fish, then game ends
 
-
+    function startGame() {
+        iteration = 0
+        async function play() {
+            await fishGenerator()
+            await fishGenerator()
+        }
+        play()
+    }
+    startGame()
 
 }
 main()
