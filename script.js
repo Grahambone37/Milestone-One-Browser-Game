@@ -7,7 +7,8 @@ function main() {
     //querySelectors
 
     let btn = document.querySelector('#fish-button')
-    let fishZone = document.querySelector('#fishing-zone');
+    let fishZone = document.querySelector('#fishing-zone')
+
     let smallHTML = document.querySelector('#small-fish')
     let mediumHTML = document.querySelector('#medium-fish')
     let largeHTML = document.querySelector('#large-fish')
@@ -33,11 +34,6 @@ function main() {
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    function ready() {
-        updateAndReset()
-        btn.innerHTML = 'Ready...'
     }
 
     function go() {
@@ -68,7 +64,8 @@ function main() {
     }
 
     function readyUp() {
-        ready()
+        updateAndReset()
+        btn.innerHTML = 'Ready...'
         clicked = false
         tooSoon(add)
     }
