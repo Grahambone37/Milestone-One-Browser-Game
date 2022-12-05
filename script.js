@@ -89,16 +89,15 @@ function main() {
     }
 
     async function smallFishEncounter() {
-        readyUp()
+        
         await sleep(1000)
 
         timeToFish()
         btn.addEventListener('click', smallClick)
         await sleep(2000)
 
-        ready()
+        readyUp()
         btn.removeEventListener('click', smallClick)
-        await sleep(500)
         console.log('small')
     }
 
@@ -113,16 +112,15 @@ function main() {
     }
 
     async function mediumFishEncounter() {
-        readyUp()
+        
         await sleep(500)
 
         timeToFish()
         btn.addEventListener('click', mediumClick)
         await sleep(1000)
 
-        ready()
+        readyUp()
         btn.removeEventListener('click', mediumClick)
-        await sleep(2000)
         console.log('medium')
     }
 
@@ -137,16 +135,15 @@ function main() {
     }
 
     async function largeFishEncounter() {
-        readyUp()
+        
         await sleep(3000)
 
         timeToFish()
         btn.addEventListener('click', largeClick)
         await sleep(500)
 
-        ready()
+        readyUp()
         btn.removeEventListener('click', largeClick)
-        await sleep(0)
         console.log('large')
     }
 
@@ -170,13 +167,14 @@ function main() {
 
     function startGame() {
         iteration = 0
+        readyUp()
         async function play() {
+            await sleep(2000)
             await fishGenerator()
             await fishGenerator()
         }
         play()
     }
     startGame()
-
 }
 main()
