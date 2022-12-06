@@ -1,8 +1,6 @@
 function main() {
     /*-----reference for backgroundchanges----
-        let topSun = document.querySelector('.top');
-        topSun.style.backgroundColor = 'yellow'
-        */
+    */
 
     //querySelectors
 
@@ -14,6 +12,13 @@ function main() {
     let largeHTML = document.querySelector('#large-fish')
 
     let score = document.querySelector('#score')
+
+    let sky = document.querySelector('#sky')
+    let topSun = document.querySelector('.top')
+    let topMidSun = document.querySelector('.top-mid')
+    let midSun = document.querySelector('.mid')
+    let midBottomSun = document.querySelector('.mid-bottom')
+    let bottomSun = document.querySelector('.bottom')
 
     //counts, etc.
 
@@ -75,6 +80,53 @@ function main() {
         tooSoon(remove)
     }
 
+    function sunset(iteration) {
+        switch (iteration) {
+            case 0:
+                sky.style.backgroundColor = 'lightskyblue';
+                break;
+            case 1:
+                topSun.style.backgroundColor = 'yellow'
+                break;
+            case 2:
+                topMidSun.style.backgroundColor = 'yellow'
+                break;
+            case 3:
+                midSun.style.backgroundColor = 'yellow'
+                break;
+            case 4:
+                midBottomSun.style.backgroundColor = 'yellow'
+                break;
+            case 5:
+                bottomSun.style.backgroundColor = 'yellow'
+                break;
+            case 6:
+                topSun.style.backgroundColor = 'lightskyblue'
+                break;
+            case 7:
+                topMidSun.style.backgroundColor = 'lightskyblue'
+                break;
+            case 8:
+                midSun.style.backgroundColor = 'lightskyblue'
+                break;
+            case 9:
+                sky.style.backgroundColor = 'mediumblue'
+                topSun.style.backgroundColor = 'mediumblue'
+                topMidSun.style.backgroundColor = 'mediumblue'
+                midSun.style.backgroundColor = 'mediumblue'
+                midBottomSun.style.backgroundColor = 'mediumblue'
+                break;
+            case 10:
+                sky.style.backgroundColor = 'midnightblue'
+                topSun.style.backgroundColor = 'midnightblue'
+                topMidSun.style.backgroundColor = 'midnightblue'
+                midSun.style.backgroundColor = 'midnightblue'
+                midBottomSun.style.backgroundColor = 'midnightblue'
+                bottomSun.style.backgroundColor = 'midnightblue'
+                break;
+        }
+    }
+
     //function smallFishEncounter
 
     function smallClick() {
@@ -86,7 +138,7 @@ function main() {
     }
 
     async function smallFishEncounter() {
-        
+
         await sleep(1000)
 
         timeToFish()
@@ -109,7 +161,7 @@ function main() {
     }
 
     async function mediumFishEncounter() {
-        
+
         await sleep(500)
 
         timeToFish()
@@ -132,7 +184,7 @@ function main() {
     }
 
     async function largeFishEncounter() {
-        
+
         await sleep(3000)
 
         timeToFish()
@@ -146,7 +198,7 @@ function main() {
 
     //function buttonpress = pick 1 of 3(eventually 4) of the fishencounters
     function fishGenerator() {
-        return new Promise(function(resolve) {
+        return new Promise(function (resolve) {
             fishSize = Math.floor(Math.random() * 3)
             if (fishSize == 0) {
                 smallFishEncounter()
@@ -155,21 +207,31 @@ function main() {
             } else if (fishSize == 2) {
                 largeFishEncounter()
             }
+            sunset(iteration)
             iteration += 1
             console.log(iteration)
             return setTimeout(resolve, 5000)
         })
     }
     //playbuttonpress---sequence of 10-random-fish, then game ends
+    async function play() {
+        await sleep(2000)
+        await fishGenerator()
+        await fishGenerator()
+        await fishGenerator()
+        await fishGenerator()
+        await fishGenerator()
+        await fishGenerator()
+        await fishGenerator()
+        await fishGenerator()
+        await fishGenerator()
+        await fishGenerator()
+        sunset(iteration)
+    }
 
     function startGame() {
         iteration = 0
         readyUp()
-        async function play() {
-            await sleep(2000)
-            await fishGenerator()
-            await fishGenerator()
-        }
         play()
     }
     startGame()
