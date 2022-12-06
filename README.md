@@ -12,3 +12,7 @@ My inspiration is that I've seen DnD games that have players put the entire stor
 -to win, you need to make $75 before the sun goes down.(or get secret condition)
 
 -secret condition(if I get the basic fish finsished): reel in BIG FISH(will have like a 0.25% chance) This fish gives $500 and instantly opens up the win screen.
+
+Sounds From Pixabay: [
+    Splash sound effect: SPLASH (by blaukreuz) / (qubodup)
+]

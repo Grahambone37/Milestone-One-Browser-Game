@@ -77,6 +77,8 @@ function main() {
         removeClick(isTooSoon)
     }
     
+    //function for background changes as time passes
+
     function sunset(iteration) {
         switch (iteration) {
             case 0:
