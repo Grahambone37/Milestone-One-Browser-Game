@@ -30,9 +30,6 @@ function main() {
     let clicked = false
     let iteration = 0
 
-    let add = 'add'
-    let remove = 'remove'
-
     btn.innerHTML = 'Start'
 
     //miscellaneous functions
@@ -79,11 +76,16 @@ function main() {
         go()
         removeClick(isTooSoon)
     }
-
+    
     function sunset(iteration) {
         switch (iteration) {
             case 0:
                 sky.style.backgroundColor = 'lightskyblue';
+                topSun.style.backgroundColor = 'lightskyblue'
+                topMidSun.style.backgroundColor = 'lightskyblue'
+                midSun.style.backgroundColor = 'lightskyblue'
+                midBottomSun.style.backgroundColor = 'lightskyblue'
+                bottomSun.style.backgroundColor = 'lightskyblue'
                 break;
             case 1:
                 topSun.style.backgroundColor = 'yellow'
@@ -142,11 +144,11 @@ function main() {
         await sleep(1000)
 
         timeToFish()
-        btn.addEventListener('click', smallClick)
+        addClick(smallClick)
         await sleep(2000)
 
         readyUp()
-        btn.removeEventListener('click', smallClick)
+        removeClick(smallClick)
         console.log('small')
     }
 
@@ -165,11 +167,11 @@ function main() {
         await sleep(500)
 
         timeToFish()
-        btn.addEventListener('click', mediumClick)
+        addClick(mediumClick)
         await sleep(1000)
 
         readyUp()
-        btn.removeEventListener('click', mediumClick)
+        removeClick(mediumClick)
         console.log('medium')
     }
 
@@ -188,11 +190,11 @@ function main() {
         await sleep(3000)
 
         timeToFish()
-        btn.addEventListener('click', largeClick)
+        addClick(largeClick)
         await sleep(500)
 
         readyUp()
-        btn.removeEventListener('click', largeClick)
+        removeClick(largeClick)
         console.log('large')
     }
 
@@ -227,16 +229,23 @@ function main() {
         await fishGenerator()
         await fishGenerator()
         sunset(iteration)
+        btn.innerHTML = 'Fish Another Day?'
+        addClick(startGame)
     }
 
     function startGame() {
+        removeClick(startGame)
         iteration = 0
+        sunset(iteration)
         smallCount = 0
         mediumCount = 0
         largeCount = 0
+        smallHTML.innerHTML = smallCount
+        mediumHTML.innerHTML = mediumCount
+        largeHTML.innerHTML = largeCount
         readyUp()
         play()
     }
-    startGame()
+    addClick(startGame)
 }
 main()
