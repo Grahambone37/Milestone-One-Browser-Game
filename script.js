@@ -20,7 +20,7 @@ function main() {
     let midBottomSun = document.querySelector('.mid-bottom')
     let bottomSun = document.querySelector('.bottom')
 
-    //counts, etc.
+    //counts, variables, etc.
 
     let smallCount = 0
     let mediumCount = 0
@@ -60,24 +60,24 @@ function main() {
         btn.innerHTML = 'Too soon...'
     }
 
-    function tooSoon(addOrRemove) {
-        if (addOrRemove == 'add') {
-            btn.addEventListener('click', isTooSoon)
-        } else if (addOrRemove == 'remove') {
-            btn.removeEventListener('click', isTooSoon)
-        }
+    function addClick(func) {
+        btn.addEventListener('click', func)
+    }
+
+    function removeClick(func) {
+        btn.removeEventListener('click', func)
     }
 
     function readyUp() {
         updateAndReset()
         btn.innerHTML = 'Ready...'
         clicked = false
-        tooSoon(add)
+        addClick(isTooSoon)
     }
 
     function timeToFish() {
         go()
-        tooSoon(remove)
+        removeClick(isTooSoon)
     }
 
     function sunset(iteration) {
@@ -231,6 +231,9 @@ function main() {
 
     function startGame() {
         iteration = 0
+        smallCount = 0
+        mediumCount = 0
+        largeCount = 0
         readyUp()
         play()
     }
