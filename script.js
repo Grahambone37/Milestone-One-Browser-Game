@@ -32,6 +32,8 @@ function main() {
 
     btn.innerHTML = 'Start'
 
+    let splashSound = new Audio('./audio/splash-by-blaukreuz-6261.mp3')
+
     //miscellaneous functions
 
     function sleep(ms) {
@@ -75,6 +77,15 @@ function main() {
     function timeToFish() {
         go()
         removeClick(isTooSoon)
+    }
+
+    function splash() {
+        splashSound.play()
+    }
+
+    function clickSuccess() {
+        splash()
+        updateAndReset()
     }
     
     //function for background changes as time passes
@@ -137,7 +148,7 @@ function main() {
         if (clicked == false) {
             smallCount += 1
             smallHTML.innerHTML = smallCount
-            updateAndReset()
+            clickSuccess()
         }
     }
 
@@ -160,7 +171,7 @@ function main() {
         if (clicked == false) {
             mediumCount += 1
             mediumHTML.innerHTML = mediumCount
-            updateAndReset()
+            clickSuccess()
         }
     }
 
@@ -183,7 +194,7 @@ function main() {
         if (clicked == false) {
             largeCount += 1
             largeHTML.innerHTML = largeCount
-            updateAndReset()
+            clickSuccess()
         }
     }
 
