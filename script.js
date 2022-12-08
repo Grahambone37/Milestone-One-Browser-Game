@@ -30,9 +30,10 @@ function main() {
     let clicked = false
     let iteration = 0
 
-    btn.innerHTML = 'Start'
+    btn.innerHTML = 'Ready Up'
 
     let splashSound = new Audio('./audio/splash-by-blaukreuz-6261.mp3')
+    splashSound.volume = 0.5
 
     //miscellaneous functions
 
@@ -89,7 +90,7 @@ function main() {
     }
     
     //function for background changes as time passes
-
+    
     function sunset(iteration) {
         switch (iteration) {
             case 0:
@@ -100,50 +101,50 @@ function main() {
                 midBottomSun.style.backgroundColor = 'lightskyblue'
                 bottomSun.style.backgroundColor = 'lightskyblue'
                 break;
-            case 1:
-                topSun.style.backgroundColor = 'yellow'
+                case 1:
+                    topSun.style.backgroundColor = 'yellow'
+                    break;
+                    case 2:
+                        topMidSun.style.backgroundColor = 'yellow'
+                        break;
+                        case 3:
+                            midSun.style.backgroundColor = 'yellow'
+                            break;
+                            case 4:
+                                midBottomSun.style.backgroundColor = 'yellow'
+                                break;
+                                case 5:
+                                    bottomSun.style.backgroundColor = 'yellow'
+                                    break;
+                                    case 6:
+                                        topSun.style.backgroundColor = 'lightskyblue'
                 break;
-            case 2:
-                topMidSun.style.backgroundColor = 'yellow'
-                break;
-            case 3:
-                midSun.style.backgroundColor = 'yellow'
-                break;
-            case 4:
-                midBottomSun.style.backgroundColor = 'yellow'
-                break;
-            case 5:
-                bottomSun.style.backgroundColor = 'yellow'
-                break;
-            case 6:
-                topSun.style.backgroundColor = 'lightskyblue'
-                break;
-            case 7:
-                topMidSun.style.backgroundColor = 'lightskyblue'
-                break;
-            case 8:
-                midSun.style.backgroundColor = 'lightskyblue'
-                break;
-            case 9:
-                sky.style.backgroundColor = 'mediumblue'
-                topSun.style.backgroundColor = 'mediumblue'
-                topMidSun.style.backgroundColor = 'mediumblue'
-                midSun.style.backgroundColor = 'mediumblue'
-                midBottomSun.style.backgroundColor = 'mediumblue'
-                break;
-            case 10:
-                sky.style.backgroundColor = 'midnightblue'
-                topSun.style.backgroundColor = 'midnightblue'
-                topMidSun.style.backgroundColor = 'midnightblue'
-                midSun.style.backgroundColor = 'midnightblue'
-                midBottomSun.style.backgroundColor = 'midnightblue'
-                bottomSun.style.backgroundColor = 'midnightblue'
-                break;
+                case 7:
+                    topMidSun.style.backgroundColor = 'lightskyblue'
+                    break;
+                    case 8:
+                        midSun.style.backgroundColor = 'lightskyblue'
+                        break;
+                        case 9:
+                            sky.style.backgroundColor = 'mediumblue'
+                            topSun.style.backgroundColor = 'mediumblue'
+                            topMidSun.style.backgroundColor = 'mediumblue'
+                            midSun.style.backgroundColor = 'mediumblue'
+                            midBottomSun.style.backgroundColor = 'mediumblue'
+                            break;
+                            case 10:
+                                sky.style.backgroundColor = 'midnightblue'
+                                topSun.style.backgroundColor = 'midnightblue'
+                                topMidSun.style.backgroundColor = 'midnightblue'
+                                midSun.style.backgroundColor = 'midnightblue'
+                                midBottomSun.style.backgroundColor = 'midnightblue'
+                                bottomSun.style.backgroundColor = 'midnightblue'
+                                break;
         }
     }
-
+    
     //function smallFishEncounter
-
+    
     function smallClick() {
         if (clicked == false) {
             smallCount += 1
@@ -151,22 +152,22 @@ function main() {
             clickSuccess()
         }
     }
-
+    
     async function smallFishEncounter() {
-
+        
         await sleep(1000)
-
+        
         timeToFish()
         addClick(smallClick)
         await sleep(2000)
-
+        
         readyUp()
         removeClick(smallClick)
         console.log('small')
     }
-
+    
     //mediumFishEncounter
-
+    
     function mediumClick() {
         if (clicked == false) {
             mediumCount += 1
@@ -174,22 +175,22 @@ function main() {
             clickSuccess()
         }
     }
-
+    
     async function mediumFishEncounter() {
-
+        
         await sleep(500)
-
+        
         timeToFish()
         addClick(mediumClick)
         await sleep(1000)
-
+        
         readyUp()
         removeClick(mediumClick)
         console.log('medium')
     }
-
+    
     //largeFishEncounter
-
+    
     function largeClick() {
         if (clicked == false) {
             largeCount += 1
@@ -197,21 +198,22 @@ function main() {
             clickSuccess()
         }
     }
-
+    
     async function largeFishEncounter() {
-
+        
         await sleep(3000)
-
+        
         timeToFish()
         addClick(largeClick)
         await sleep(500)
-
+        
         readyUp()
         removeClick(largeClick)
         console.log('large')
     }
-
+    
     //function buttonpress = pick 1 of 3(eventually 4) of the fishencounters
+    
     function fishGenerator() {
         return new Promise(function (resolve) {
             fishSize = Math.floor(Math.random() * 3)
@@ -228,7 +230,9 @@ function main() {
             return setTimeout(resolve, 5000)
         })
     }
+    
     //playbuttonpress---sequence of 10-random-fish, then game ends
+    
     async function play() {
         await sleep(2000)
         await fishGenerator()
@@ -245,7 +249,7 @@ function main() {
         btn.innerHTML = 'Fish Another Day?'
         addClick(startGame)
     }
-
+    
     function startGame() {
         removeClick(startGame)
         iteration = 0
@@ -259,6 +263,21 @@ function main() {
         readyUp()
         play()
     }
-    addClick(startGame)
+    
+    function startLoop() {
+        removeClick(startLoop)
+        btn.innerHTML = 'Start!'
+        let ambience = document.createElement('audio')
+        ambience.setAttribute('src', './audio/birds-frogs-nature-8257.mp3')
+        ambience.volume = 0.1
+        //had to make a click happen before this would start
+        ambience.play()
+        ambience.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false)
+        addClick(startGame)
+    }
+    addClick(startLoop)
 }
 main()
