@@ -20,6 +20,11 @@ function main() {
     let midBottomSun = document.querySelector('.mid-bottom')
     let bottomSun = document.querySelector('.bottom')
 
+    let muteAllBtn = document.querySelector('#mute-all')
+    let muteSoundBtn = document.querySelector('#mute-sound')
+    let muteAmbienceBtn = document.querySelector('#mute-ambience')
+    let muteMusicBtn = document.querySelector('#mute-music')
+
     //counts, variables, etc.
 
     let smallCount = 0
@@ -38,7 +43,9 @@ function main() {
     ambience.volume = 0.1
     let music = new Audio('./audio/powerful-beat-121791.mp3')
     music.volume = 0.3
-
+    let soundMuted = false
+    let ambienceMuted = false
+    let musicMuted = false
 
     //miscellaneous functions
 
@@ -93,6 +100,20 @@ function main() {
         splash()
         updateAndReset()
     }
+
+    //audio shenanigans(mute buttons)
+    function muteSound() {
+        if (soundMuted == false) {
+            soundMuted = true;
+            splashSound.volume = 0;
+            muteSoundBtn.innerHTML = '<del>Sound</del>'
+        } else {
+            soundMuted = false;
+            splashSound.volume = 0.5;
+            muteSoundBtn.innerHTML = 'Sound'
+        }
+    }
+    muteSoundBtn.addEventListener('click', muteSound)
 
     //function for background changes as time passes
 
@@ -285,6 +306,7 @@ function main() {
         }, false)
         addClick(startGame)
     }
+
     addClick(startLoop)
 }
 main()
