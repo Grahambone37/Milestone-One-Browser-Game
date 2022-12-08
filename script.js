@@ -102,6 +102,7 @@ function main() {
     }
 
     //audio shenanigans(mute buttons)
+    
     function muteSound() {
         if (soundMuted == false) {
             soundMuted = true;
@@ -112,8 +113,57 @@ function main() {
             splashSound.volume = 0.5;
             muteSoundBtn.innerHTML = 'Sound'
         }
+        isAllMuted()
     }
     muteSoundBtn.addEventListener('click', muteSound)
+
+    function muteAmbience() {
+        if (ambienceMuted == false) {
+            ambienceMuted = true;
+            ambience.volume = 0;
+            muteAmbienceBtn.innerHTML = '<del>Ambience</del>'
+        } else {
+            ambienceMuted = false;
+            ambience.volume = 0.1;
+            muteAmbienceBtn.innerHTML = 'Ambience'
+        }
+        isAllMuted()
+    }
+    muteAmbienceBtn.addEventListener('click', muteAmbience)
+
+    function muteMusic() {
+        if (musicMuted == false) {
+            musicMuted = true;
+            music.volume = 0;
+            muteMusicBtn.innerHTML = '<del>Music</del>'
+        } else {
+            musicMuted = false;
+            music.volume = 0.3;
+            muteMusicBtn.innerHTML = 'Music'
+        }
+        isAllMuted()
+    }
+    muteMusicBtn.addEventListener('click', muteMusic)
+
+    function muteAll() {
+        if (soundMuted == false || ambienceMuted == false || musicMuted == false) {
+            soundMuted = false;
+            ambienceMuted = false;
+            musicMuted = false;
+        }
+        muteSound();
+        muteAmbience();
+        muteMusic();
+        isAllMuted()
+    }
+    muteAllBtn.addEventListener('click', muteAll)
+    function isAllMuted() {
+        if (soundMuted == true && ambienceMuted == true && musicMuted == true) {
+            muteAllBtn.innerHTML = 'Unmute All'
+        } else {
+            muteAllBtn.innerHTML = 'Mute All'
+        }
+    }
 
     //function for background changes as time passes
 
