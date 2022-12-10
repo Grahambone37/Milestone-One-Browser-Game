@@ -108,9 +108,16 @@ function main() {
 
     function makeButton() {
         btn = document.createElement('button')
+        if (fishSize == 0) {
+            btn.style.padding = '1em'
+        } else if (fishSize == 1) {
+            btn.style.padding = '2em'
+        } else {
+            btn.style.padding = '3em'
+        }
         fishZone.append(btn)
     }
-
+    
     //audio shenanigans(mute buttons)
     
     function muteSound() {
@@ -368,6 +375,7 @@ function main() {
         await fishGenerator()
         fishZone = document.querySelector('#five-of-nine')
         makeButton()
+        btn.style.padding = '3px'
         sunset(iteration)
         btn.innerHTML = 'Fish Another Day?'
         addClick(startGame)
