@@ -39,8 +39,6 @@ function main() {
     let clicked = false
     let iteration = 0
 
-    btn.innerHTML = 'Ready Up'
-
     let splashSound = new Audio('./audio/splash-by-blaukreuz-6261.mp3')
     splashSound.volume = 0.5
     let ambience = new Audio('./audio/birds-frogs-nature-8257.mp3')
@@ -59,53 +57,43 @@ function main() {
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
-    function go() {
-        makeButton()
-        btn.innerHTML = 'Fish!!!'
-        fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
-    }
-
+    
     function updateAndReset() {
         score.innerHTML = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
         fishZone.style.backgroundColor = 'darkturquoise'
+        tally.innerHTML = totalCaught + "/10"
+        if (totalCaught == 10) {
+            tally.innerHTML = "10/10 NICE"
+        }
     }
-
-    function isTooSoon() {
-        btn.remove()
-        console.log('missed')
-    }
-
+    
     function addClick(func) {
         btn.addEventListener('click', func)
     }
-
+    
     function removeClick(func) {
         btn.removeEventListener('click', func)
     }
-
+    
     function readyUp() {
         updateAndReset()
         if (clicked == false) {
             gremlinLaugh.play()
         }
-        addClick(isTooSoon)
+        btn.remove()
     }
-
+    
     function timeToFish() {
-        go()
+        makeButton()
+        btn.innerHTML = 'Fish!!!'
+        fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
         clicked = false
-        removeClick(isTooSoon)
     }
 
     function clickSuccess() {
         splashSound.play()
-        updateAndReset()
         totalCaught += 1
-        tally.innerHTML = totalCaught + "/10"
-        if (totalCaught == 10) {
-            tally.innerHTML = "10/10 NICE"
-        }
+        updateAndReset()
         clicked = true
         btn.remove()
     }
@@ -196,14 +184,14 @@ function main() {
     muteAllBtn.addEventListener('click', muteAll)
 
     function isAllMuted() {
-        if (soundMuted == true && ambienceMuted == true && musicMuted == true) {
+        if (soundMuted == true && ambienceMuted == true && musicMuted == true && gremlinMuted == true) {
             muteAllBtn.innerHTML = 'Unmute All'
         } else {
             muteAllBtn.innerHTML = 'Mute All'
         }
     }
 
-    //function for background changes as time passes
+    //sunset function
 
     function sunset(iteration) {
         switch (iteration) {
@@ -240,11 +228,11 @@ function main() {
                 midSun.style.backgroundColor = 'lightskyblue'
                 break;
             case 9:
-                sky.style.backgroundColor = 'mediumblue'
-                topSun.style.backgroundColor = 'mediumblue'
-                topMidSun.style.backgroundColor = 'mediumblue'
-                midSun.style.backgroundColor = 'mediumblue'
-                midBottomSun.style.backgroundColor = 'mediumblue'
+                sky.style.backgroundColor = 'rgb(25, 72, 100)'
+                topSun.style.backgroundColor = 'rgb(25, 72, 100)'
+                topMidSun.style.backgroundColor = 'rgb(25, 72, 100)'
+                midSun.style.backgroundColor = 'rgb(25, 72, 100)'
+                midBottomSun.style.backgroundColor = 'rgb(25, 72, 100)'
                 break;
             default:
                 sky.style.backgroundColor = 'midnightblue'
@@ -273,7 +261,6 @@ function main() {
         addClick(smallClick)
         await sleep(2000)
 
-        btn.remove()
         readyUp()
         removeClick(smallClick)
         console.log('small')
@@ -295,7 +282,6 @@ function main() {
         addClick(mediumClick)
         await sleep(1000)
 
-        btn.remove()
         readyUp()
         removeClick(mediumClick)
         console.log('medium')
@@ -317,7 +303,6 @@ function main() {
         addClick(largeClick)
         await sleep(500)
 
-        btn.remove()
         readyUp()
         removeClick(largeClick)
         console.log('large')
@@ -398,7 +383,6 @@ function main() {
     function startGame() {
         removeClick(startGame)
         //setting up create button func
-        btn.remove()
         iteration = 0
         sunset(iteration)
         smallCount = 0
@@ -409,7 +393,6 @@ function main() {
         smallHTML.innerHTML = smallCount
         mediumHTML.innerHTML = mediumCount
         largeHTML.innerHTML = largeCount
-        tally.innerHTML = totalCaught
         readyUp()
         play()
     }
