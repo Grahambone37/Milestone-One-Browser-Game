@@ -56,6 +56,7 @@ function main() {
 
     function go() {
         if (clicked == false) {
+            makeButton()
             btn.innerHTML = 'Fish!!!'
             fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
         }
@@ -102,6 +103,11 @@ function main() {
     function clickSuccess() {
         splash()
         updateAndReset()
+    }
+
+    function makeButton() {
+        btn = document.createElement('button')
+        fishZone.append(btn)
     }
 
     //audio shenanigans(mute buttons)
@@ -230,6 +236,7 @@ function main() {
             smallCount += 1
             smallHTML.innerHTML = smallCount
             clickSuccess()
+            btn.remove()
         }
     }
 
@@ -241,6 +248,7 @@ function main() {
         addClick(smallClick)
         await sleep(2000)
 
+        btn.remove()
         readyUp()
         removeClick(smallClick)
         console.log('small')
@@ -253,6 +261,7 @@ function main() {
             mediumCount += 1
             mediumHTML.innerHTML = mediumCount
             clickSuccess()
+            btn.remove()
         }
     }
 
@@ -264,6 +273,7 @@ function main() {
         addClick(mediumClick)
         await sleep(1000)
 
+        btn.remove()
         readyUp()
         removeClick(mediumClick)
         console.log('medium')
@@ -276,6 +286,7 @@ function main() {
             largeCount += 1
             largeHTML.innerHTML = largeCount
             clickSuccess()
+            btn.remove()
         }
     }
 
@@ -287,6 +298,7 @@ function main() {
         addClick(largeClick)
         await sleep(500)
 
+        btn.remove()
         readyUp()
         removeClick(largeClick)
         console.log('large')
