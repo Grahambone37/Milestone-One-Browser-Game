@@ -12,6 +12,7 @@ function main() {
     let largeHTML = document.querySelector('#large-fish')
 
     let score = document.querySelector('#score')
+    let tally = document.querySelector('#fish-caught-count')
 
     let sky = document.querySelector('#sky')
     let topSun = document.querySelector('.top')
@@ -32,6 +33,7 @@ function main() {
     let largeCount = 0
     let fishSize = 0
     let pondSpot = 4
+    let totalCaught = 0
 
     let clicked = false
     let iteration = 0
@@ -95,14 +97,13 @@ function main() {
         go()
         removeClick(isTooSoon)
     }
-
-    function splash() {
-        splashSound.play()
-    }
-
+    
     function clickSuccess() {
-        splash()
+        splashSound.play()
         updateAndReset()
+        totalCaught += 1;
+        tally.innerHTML = totalCaught
+        btn.remove()
     }
 
     function makeButton() {
@@ -236,7 +237,6 @@ function main() {
             smallCount += 1
             smallHTML.innerHTML = smallCount
             clickSuccess()
-            btn.remove()
         }
     }
 
@@ -261,7 +261,6 @@ function main() {
             mediumCount += 1
             mediumHTML.innerHTML = mediumCount
             clickSuccess()
-            btn.remove()
         }
     }
 
@@ -286,7 +285,6 @@ function main() {
             largeCount += 1
             largeHTML.innerHTML = largeCount
             clickSuccess()
-            btn.remove()
         }
     }
 
@@ -368,6 +366,8 @@ function main() {
         await fishGenerator()
         await fishGenerator()
         await fishGenerator()
+        fishZone = document.querySelector('#five-of-nine')
+        makeButton()
         sunset(iteration)
         btn.innerHTML = 'Fish Another Day?'
         addClick(startGame)
@@ -382,9 +382,11 @@ function main() {
         smallCount = 0
         mediumCount = 0
         largeCount = 0
+        totalCaught = 0
         smallHTML.innerHTML = smallCount
         mediumHTML.innerHTML = mediumCount
         largeHTML.innerHTML = largeCount
+        tally.innerHTML = totalCaught
         readyUp()
         play()
     }
@@ -392,7 +394,7 @@ function main() {
     function startLoop() {
         removeClick(startLoop)
         btn.innerHTML = 'Start!'
-        //had to make a click happen before this would start
+        //had to make a click happen before audio could start
         ambience.play()
         ambience.addEventListener('ended', function () {
             this.currentTime = 0;
