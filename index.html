@@ -43,19 +43,42 @@
             <div id="mountain"></div>
             <div id="greenery"></div>
             <div id="water">
-                <!--3 zones. top for header, middle for fishing zone-->
-                <div class="pond top-bot-pond">
-                    <header>Hello World!</header>
+                <!--outer edges with fishing zones in the middle-->
+                <div class="outside-verticle">
+                    <h2 class="top-of-pond"></h2>
+                    <h1 class="top-of-pond">Hello World!</h1>
+                    <h2 class="top-of-pond"><span id="fish-caught-count">0</span>/10</h2>
                 </div>
-                <div class="pond mid-pond">
-                    <div class="sides-of-ponds"></div>
-                    <div id="fishing-zone">
+                <!--top3-->
+                <div class="third-of-pond">
+                    <div class="outside-horizontal"></div>
+                    <div class="ninth-of-pond" id="one-of-nine"></div>
+                    <div class="ninth-of-pond" id="two-of-nine">
+                    </div>
+                    <div class="ninth-of-pond" id="three-of-nine"></div>
+                    <div class="outside-horizontal"></div>
+                </div>
+                <!--mid3-->
+                <div class="third-of-pond">
+                    <div class="outside-horizontal"></div>
+                    <div class="ninth-of-pond" id="four-of-nine"></div>
+                    <div class="ninth-of-pond" id="five-of-nine">
                         <button id="fish-button" type="button">Fish!</button>
                     </div>
-                    <div class="side-of-ponds"></div>
+                    <div class="ninth-of-pond" id="six-of-nine"></div>
+                    <div class="outside-horizontal"></div>
                 </div>
-                <div class="pond top-bot-pond"></div>
+                <!--bottom3-->
+                <div class="third-of-pond">
+                    <div class="outside-horizontal"></div>
+                    <div class="ninth-of-pond" id="seven-of-nine"></div>
+                    <div class="ninth-of-pond" id="eight-of-nine"></div>
+                    <div class="ninth-of-pond" id="nine-of-nine"></div>
+                    <div class="outside-horizontal"></div>
+                </div>
+                <div class="outside-verticle"></div>
             </div>
+            <!--scoreboard-->
             <div id="scoreboard">
                 <div id="fish">Fish Count: Smallfish:<span id="small-fish">0</span> / Mediumfish:<span
                         id="medium-fish">0</span> / Bigfish:<span id="large-fish">0</span></div>

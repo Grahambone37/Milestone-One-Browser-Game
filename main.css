@@ -7,28 +7,39 @@ main {
     flex-flow: column nowrap
 }
 
-.sky-sun-sky, .pond, #fishing-zone {
+.third-of-pond, #scoreboard, .ninth-of-pond, .outside-verticle, h1, h2, .sky-sun-sky {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sky-sun-sky {
     align-items: stretch;
     justify-content: center;
 }
 
-.top-bot-pond {
-    min-height: 20vh;
+.third-of-pond, .ninth-of-pond {
+    min-height: 17vh;
 }
 
-.mid-pond, #fishing-zone, .top-bot-pond, #scoreboard {
-    align-items: center;
+.outside-verticle, .top-of-pond {
+    min-height: 5vh;
+    background-color: pink;
 }
 
-.sides-of-pond {
-    min-width: 40%;
+.outside-verticle {
+    min-width: 33%;
 }
 
-#fishing-zone {
-    min-height: 18vh;
-    min-width: 20%;
+.ninth-of-pond {
+    min-width: 30%;
+}
+
+.outside-horizontal {
+    min-width: 5%;
+    min-height: 17vh;
+    background-color: pink;
 }
 
 .sky-sun-sky {
@@ -55,20 +66,18 @@ main {
 
 #greenery {
     background-color: darkgreen;
-    min-height: 11vh;
+    min-height: 8vh;
 }
 
 #water {
     background-color: darkturquoise;
-    min-height: 58vh;
 }
 
 #scoreboard {
     background-color: blue;
     min-height: 5vh;
     color: salmon;
-    display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 #fish {
@@ -83,6 +92,7 @@ main {
     border: 2vh ridge lawngreen;
 }
 
-body {
+body, h1, h2 {
     margin: 0;
+    padding: 0;
 }

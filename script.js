@@ -5,7 +5,7 @@ function main() {
     //querySelectors
 
     let btn = document.querySelector('#fish-button')
-    let fishZone = document.querySelector('#fishing-zone')
+    let fishZone = document.querySelector('#five-of-nine')
 
     let smallHTML = document.querySelector('#small-fish')
     let mediumHTML = document.querySelector('#medium-fish')
@@ -70,6 +70,8 @@ function main() {
     function isTooSoon() {
         clicked = true
         btn.innerHTML = 'Too soon...'
+        btn.remove()
+        console.log('missed')
     }
 
     function addClick(func) {
@@ -157,6 +159,7 @@ function main() {
         isAllMuted()
     }
     muteAllBtn.addEventListener('click', muteAll)
+    
     function isAllMuted() {
         if (soundMuted == true && ambienceMuted == true && musicMuted == true) {
             muteAllBtn.innerHTML = 'Unmute All'
@@ -288,6 +291,10 @@ function main() {
         console.log('large')
     }
 
+    //spot of pond generator
+
+
+
     //function buttonpress = pick 1 of 3(eventually 4) of the fishencounters
 
     function fishGenerator() {
@@ -333,6 +340,8 @@ function main() {
 
     function startGame() {
         removeClick(startGame)
+        //setting up create button func
+        btn.remove()
         iteration = 0
         sunset(iteration)
         smallCount = 0
