@@ -31,6 +31,7 @@ function main() {
     let mediumCount = 0
     let largeCount = 0
     let fishSize = 0
+    let pondSpot = 4
 
     let clicked = false
     let iteration = 0
@@ -211,7 +212,7 @@ function main() {
                 midSun.style.backgroundColor = 'mediumblue'
                 midBottomSun.style.backgroundColor = 'mediumblue'
                 break;
-            case 10:
+            default:
                 sky.style.backgroundColor = 'midnightblue'
                 topSun.style.backgroundColor = 'midnightblue'
                 topMidSun.style.backgroundColor = 'midnightblue'
@@ -293,12 +294,34 @@ function main() {
 
     //spot of pond generator
 
-
+    function fishLocation() {
+        pondSpot = Math.floor(Math.random() * 9);
+        if (pondSpot == 0) {
+            fishZone = document.querySelector('#one-of-nine')
+        } else if (pondSpot == 1) {
+            fishZone = document.querySelector('#two-of-nine')
+        } else if (pondSpot == 2) {
+            fishZone = document.querySelector('#three-of-nine')
+        } else if (pondSpot == 3) {
+            fishZone = document.querySelector('#four-of-nine')
+        } else if (pondSpot == 4) {
+            fishZone = document.querySelector('#five-of-nine')
+        } else if (pondSpot == 5) {
+            fishZone = document.querySelector('#six-of-nine')
+        } else if (pondSpot == 6) {
+            fishZone = document.querySelector('#seven-of-nine')
+        } else if (pondSpot == 7) {
+            fishZone = document.querySelector('#eight-of-nine')
+        } else if (pondSpot == 8) {
+            fishZone = document.querySelector('#nine-of-nine')
+        }
+    }
 
     //function buttonpress = pick 1 of 3(eventually 4) of the fishencounters
 
     function fishGenerator() {
         return new Promise(function (resolve) {
+            fishLocation();
             fishSize = Math.floor(Math.random() * 3)
             if (fishSize == 0) {
                 smallFishEncounter()
