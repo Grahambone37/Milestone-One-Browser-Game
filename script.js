@@ -25,6 +25,7 @@ function main() {
     let muteSoundBtn = document.querySelector('#mute-sound')
     let muteAmbienceBtn = document.querySelector('#mute-ambience')
     let muteMusicBtn = document.querySelector('#mute-music')
+    let muteGremlinBtn = document.querySelector('#mute-gremlin')
 
     //counts, variables, etc.
 
@@ -46,9 +47,12 @@ function main() {
     ambience.volume = 0.1
     let music = new Audio('./audio/powerful-beat-121791.mp3')
     music.volume = 0.3
+    let gremlinLaugh = new Audio('./audio/shrieking-laughter-104590.mp3')
+    gremlinLaugh.volume = 0.2
     let soundMuted = false
     let ambienceMuted = false
     let musicMuted = false
+    let gremlinMuted = false
 
     //miscellaneous functions
 
@@ -57,23 +61,17 @@ function main() {
     }
 
     function go() {
-        if (clicked == false) {
-            makeButton()
-            btn.innerHTML = 'Fish!!!'
-            fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
-        }
+        makeButton()
+        btn.innerHTML = 'Fish!!!'
+        fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
     }
 
     function updateAndReset() {
         score.innerHTML = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
         fishZone.style.backgroundColor = 'darkturquoise'
-        btn.innerHTML = 'Caught!'
-        clicked = true
     }
 
     function isTooSoon() {
-        clicked = true
-        btn.innerHTML = 'Too soon...'
         btn.remove()
         console.log('missed')
     }
@@ -88,24 +86,27 @@ function main() {
 
     function readyUp() {
         updateAndReset()
-        btn.innerHTML = 'Ready...'
-        clicked = false
+        if (clicked == false) {
+            gremlinLaugh.play()
+        }
         addClick(isTooSoon)
     }
 
     function timeToFish() {
         go()
+        clicked = false
         removeClick(isTooSoon)
     }
 
     function clickSuccess() {
         splashSound.play()
         updateAndReset()
-        totalCaught += 1;
+        totalCaught += 1
         tally.innerHTML = totalCaught + "/10"
         if (totalCaught == 10) {
             tally.innerHTML = "10/10 NICE"
         }
+        clicked = true
         btn.remove()
     }
 
@@ -164,17 +165,33 @@ function main() {
         isAllMuted()
     }
     muteMusicBtn.addEventListener('click', muteMusic)
+    
+    function muteGremlin() {
+        if (gremlinMuted == false) {
+            gremlinMuted = true;
+            gremlinLaugh.volume = 0;
+            muteGremlinBtn.innerHTML = '<del>Gremlin</del>'
+        } else {
+            gremlinMuted = false;
+            gremlinLaugh.volume = 0.2;
+            muteGremlinBtn.innerHTML = 'Gremlin'
+        }
+        isAllMuted()
+    }
+    muteGremlinBtn.addEventListener('click', muteGremlin)
 
     function muteAll() {
-        if (soundMuted == false || ambienceMuted == false || musicMuted == false) {
+        if (soundMuted == false || ambienceMuted == false || musicMuted == false || gremlinMuted == false) {
             soundMuted = false;
             ambienceMuted = false;
             musicMuted = false;
+            gremlinMuted = false;
         }
         muteSound();
         muteAmbience();
         muteMusic();
-        isAllMuted()
+        muteGremlin();
+        isAllMuted();
     }
     muteAllBtn.addEventListener('click', muteAll)
 
@@ -243,11 +260,9 @@ function main() {
     //function smallFishEncounter
 
     function smallClick() {
-        if (clicked == false) {
-            smallCount += 1
-            smallHTML.innerHTML = smallCount
-            clickSuccess()
-        }
+        smallCount += 1
+        smallHTML.innerHTML = smallCount
+        clickSuccess()
     }
 
     async function smallFishEncounter() {
@@ -267,11 +282,9 @@ function main() {
     //mediumFishEncounter
 
     function mediumClick() {
-        if (clicked == false) {
-            mediumCount += 1
-            mediumHTML.innerHTML = mediumCount
-            clickSuccess()
-        }
+        mediumCount += 1
+        mediumHTML.innerHTML = mediumCount
+        clickSuccess()
     }
 
     async function mediumFishEncounter() {
@@ -291,11 +304,9 @@ function main() {
     //largeFishEncounter
 
     function largeClick() {
-        if (clicked == false) {
-            largeCount += 1
-            largeHTML.innerHTML = largeCount
-            clickSuccess()
-        }
+        largeCount += 1
+        largeHTML.innerHTML = largeCount
+        clickSuccess()
     }
 
     async function largeFishEncounter() {
@@ -394,6 +405,7 @@ function main() {
         mediumCount = 0
         largeCount = 0
         totalCaught = 0
+        clicked = true
         smallHTML.innerHTML = smallCount
         mediumHTML.innerHTML = mediumCount
         largeHTML.innerHTML = largeCount

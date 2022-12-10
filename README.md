@@ -17,4 +17,5 @@ Sounds From Pixabay: [
     Splash sound effect: SPLASH (by blaukreuz) / qubodup,
     Background noise: Birds, frogs, nature, Птицы и лягушки / SSPsurvival,
     Music: Powerful Beat / penguinmusic,
+    Laughing: Shrieking Laughter / plasterbrain
 ]
