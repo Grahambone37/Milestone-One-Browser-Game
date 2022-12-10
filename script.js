@@ -97,12 +97,15 @@ function main() {
         go()
         removeClick(isTooSoon)
     }
-    
+
     function clickSuccess() {
         splashSound.play()
         updateAndReset()
         totalCaught += 1;
-        tally.innerHTML = totalCaught
+        tally.innerHTML = totalCaught + "/10"
+        if (totalCaught == 10) {
+            tally.innerHTML = "10/10 NICE"
+        }
         btn.remove()
     }
 
@@ -117,9 +120,9 @@ function main() {
         }
         fishZone.append(btn)
     }
-    
+
     //audio shenanigans(mute buttons)
-    
+
     function muteSound() {
         if (soundMuted == false) {
             soundMuted = true;
@@ -174,7 +177,7 @@ function main() {
         isAllMuted()
     }
     muteAllBtn.addEventListener('click', muteAll)
-    
+
     function isAllMuted() {
         if (soundMuted == true && ambienceMuted == true && musicMuted == true) {
             muteAllBtn.innerHTML = 'Unmute All'
