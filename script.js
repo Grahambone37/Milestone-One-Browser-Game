@@ -5,6 +5,7 @@ function main() {
     //querySelectors
 
     let btn = document.querySelector('#fish-button')
+    btn.style.fontSize = '1em'
     let fishZone = document.querySelector('#five-of-nine')
 
     let smallHTML = document.querySelector('#small-fish')
@@ -89,7 +90,7 @@ function main() {
         fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
         clicked = false
     }
-
+    
     function clickSuccess() {
         splashSound.play()
         totalCaught += 1
@@ -97,15 +98,15 @@ function main() {
         clicked = true
         btn.remove()
     }
-
+    
     function makeButton() {
         btn = document.createElement('button')
         if (fishSize == 0) {
-            btn.style.padding = '1em'
+            btn.style.fontSize = '1.25em'
         } else if (fishSize == 1) {
-            btn.style.padding = '2em'
+            btn.style.fontSize = '2em'
         } else {
-            btn.style.padding = '3em'
+            btn.style.fontSize = '3em'
         }
         fishZone.append(btn)
     }
@@ -254,9 +255,9 @@ function main() {
     }
 
     async function smallFishEncounter() {
-
+        
         await sleep(1000)
-
+        
         timeToFish()
         addClick(smallClick)
         await sleep(2000)
@@ -277,7 +278,7 @@ function main() {
     async function mediumFishEncounter() {
 
         await sleep(500)
-
+        
         timeToFish()
         addClick(mediumClick)
         await sleep(1000)
@@ -374,7 +375,7 @@ function main() {
         await fishGenerator()
         fishZone = document.querySelector('#five-of-nine')
         makeButton()
-        btn.style.padding = '3px'
+        btn.style.fontSize = '2em'
         sunset(iteration)
         btn.innerHTML = 'Fish Another Day?'
         addClick(startGame)

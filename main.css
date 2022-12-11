@@ -1,6 +1,7 @@
 
 * {
     text-align: center;
+    font-family: cursive;
 }
 
 main {
@@ -25,7 +26,6 @@ main {
 
 .outside-verticle, .top-of-pond {
     min-height: 5vh;
-    background-color: pink;
 }
 
 .outside-verticle {
@@ -39,7 +39,6 @@ main {
 .outside-horizontal {
     min-width: 5%;
     min-height: 17vh;
-    background-color: pink;
 }
 
 .sky-sun-sky {
@@ -95,4 +94,12 @@ main {
 body, h1, h2 {
     margin: 0;
     padding: 0;
+}
+
+button {
+    background-color: lightblue;
+    color: steelblue;
+    border-color: rgb(77, 42, 38);
+    border-style:double;
+    border-radius: 0.5em;
 }
