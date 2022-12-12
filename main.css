@@ -65,7 +65,7 @@ main {
 
 #greenery {
     background-color: darkgreen;
-    min-height: 8vh;
+    min-height: 6vh;
 }
 
 #water {
@@ -74,7 +74,7 @@ main {
 
 #scoreboard {
     background-color: blue;
-    min-height: 5vh;
+    min-height: 7vh;
     color: salmon;
     justify-content: space-around;
 }
