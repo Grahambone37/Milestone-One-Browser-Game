@@ -27,19 +27,20 @@ function main() {
     let muteAmbienceBtn = document.querySelector('#mute-ambience')
     let muteMusicBtn = document.querySelector('#mute-music')
     let muteGremlinBtn = document.querySelector('#mute-gremlin')
-
+    let resetArea = document.querySelector('.reset-area')
+    
     //counts, variables, etc.
-
+    
     let smallCount = 0
     let mediumCount = 0
     let largeCount = 0
     let fishSize = 0
     let pondSpot = 4
     let totalCaught = 0
-
+    
     let clicked = false
     let iteration = 0
-
+    
     let splashSound = new Audio('./audio/splash-by-blaukreuz-6261.mp3')
     splashSound.volume = 0.5
     let ambience = new Audio('./audio/birds-frogs-nature-8257.mp3')
@@ -52,13 +53,25 @@ function main() {
     let ambienceMuted = false
     let musicMuted = false
     let gremlinMuted = false
+    
+    let resetButton = document.createElement('button')
+    let reset = false
+    resetButton.innerHTML = "Reset"
+    resetButton.style.fontSize = '1em'
+    resetArea.append(resetButton)
+    resetButton.style.zIndex = '-5'
+    resetButton.addEventListener('click', function() {
+        reset = true
+        resetButton.style.zIndex = '-5'
+        return
+    })
 
     //miscellaneous functions
-
+    
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-    
+
     function updateAndReset() {
         score.innerHTML = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
         fishZone.style.backgroundColor = 'darkturquoise'
@@ -67,15 +80,15 @@ function main() {
             tally.innerHTML = "10/10 NICE"
         }
     }
-    
+
     function addClick(func) {
         btn.addEventListener('click', func)
     }
-    
+
     function removeClick(func) {
         btn.removeEventListener('click', func)
     }
-    
+
     function readyUp() {
         updateAndReset()
         if (clicked == false) {
@@ -83,14 +96,14 @@ function main() {
         }
         btn.remove()
     }
-    
+
     function timeToFish() {
         makeButton()
         btn.innerHTML = 'Fish!!!'
         fishZone.style.backgroundColor = 'rgb(0, 90, 92)'
         clicked = false
     }
-    
+
     function clickSuccess() {
         splashSound.play()
         totalCaught += 1
@@ -98,7 +111,7 @@ function main() {
         clicked = true
         btn.remove()
     }
-    
+
     function makeButton() {
         btn = document.createElement('button')
         if (fishSize == 0) {
@@ -154,7 +167,7 @@ function main() {
         isAllMuted()
     }
     muteMusicBtn.addEventListener('click', muteMusic)
-    
+
     function muteGremlin() {
         if (gremlinMuted == false) {
             gremlinMuted = true;
@@ -255,9 +268,12 @@ function main() {
     }
 
     async function smallFishEncounter() {
-        
+
         await sleep(1000)
-        
+        if (iteration > 0 && reset == true) {
+            return
+        }
+
         timeToFish()
         addClick(smallClick)
         await sleep(2000)
@@ -278,7 +294,10 @@ function main() {
     async function mediumFishEncounter() {
 
         await sleep(500)
-        
+        if (iteration > 0 && reset == true) {
+            return
+        }
+
         timeToFish()
         addClick(mediumClick)
         await sleep(1000)
@@ -299,6 +318,9 @@ function main() {
     async function largeFishEncounter() {
 
         await sleep(3000)
+        if (iteration > 0 && reset == true) {
+            return
+        }
 
         timeToFish()
         addClick(largeClick)
@@ -338,6 +360,10 @@ function main() {
 
     function fishGenerator() {
         return new Promise(function (resolve) {
+            if (iteration > 0 && reset == true) {
+                reset = false
+                return startGame()
+            }
             fishLocation();
             fishSize = Math.floor(Math.random() * 3)
             if (fishSize == 0) {
@@ -355,7 +381,7 @@ function main() {
     }
 
     //playbuttonpress---sequence of 10-random-fish, then game ends
-
+    
     async function play() {
         if (music.paused) {
             music.play()
@@ -378,11 +404,13 @@ function main() {
         btn.style.fontSize = '2em'
         sunset(iteration)
         btn.innerHTML = 'Fish Another Day?'
+        resetButton.style.zIndex = '-5'
         addClick(startGame)
     }
-
-    function startGame() {
+    
+    async function startGame() {
         removeClick(startGame)
+        resetButton.style.zIndex = '-5'
         //setting up create button func
         iteration = 0
         sunset(iteration)
@@ -396,6 +424,9 @@ function main() {
         largeHTML.innerHTML = largeCount
         readyUp()
         play()
+        await sleep(7000)
+        reset = false
+        resetButton.style.zIndex = '1'
     }
 
     function startLoop() {
