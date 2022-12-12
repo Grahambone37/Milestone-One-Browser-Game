@@ -14,6 +14,7 @@ function main() {
 
     let score = document.querySelector('#score')
     let tally = document.querySelector('#fish-caught-count')
+    let heading = document.querySelector('#heading')
 
     let sky = document.querySelector('#sky')
     let topSun = document.querySelector('.top')
@@ -28,19 +29,20 @@ function main() {
     let muteMusicBtn = document.querySelector('#mute-music')
     let muteGremlinBtn = document.querySelector('#mute-gremlin')
     let resetArea = document.querySelector('.reset-area')
-    
+
     //counts, variables, etc.
-    
+
     let smallCount = 0
     let mediumCount = 0
     let largeCount = 0
     let fishSize = 0
     let pondSpot = 4
     let totalCaught = 0
-    
+    let scoreTotal = 0
+
     let clicked = false
     let iteration = 0
-    
+
     let splashSound = new Audio('./audio/splash-by-blaukreuz-6261.mp3')
     splashSound.volume = 0.5
     let ambience = new Audio('./audio/birds-frogs-nature-8257.mp3')
@@ -53,27 +55,16 @@ function main() {
     let ambienceMuted = false
     let musicMuted = false
     let gremlinMuted = false
-    
-    let resetButton = document.createElement('button')
-    let reset = false
-    resetButton.innerHTML = "Reset"
-    resetButton.style.fontSize = '1em'
-    resetArea.append(resetButton)
-    resetButton.style.zIndex = '-5'
-    resetButton.addEventListener('click', function() {
-        reset = true
-        resetButton.style.zIndex = '-5'
-        return
-    })
 
     //miscellaneous functions
-    
+
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     function updateAndReset() {
-        score.innerHTML = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
+        scoreTotal = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
+        score.innerHTML = scoreTotal
         fishZone.style.backgroundColor = 'darkturquoise'
         tally.innerHTML = totalCaught + "/10"
         if (totalCaught == 10) {
@@ -122,6 +113,18 @@ function main() {
             btn.style.fontSize = '3em'
         }
         fishZone.append(btn)
+    }
+
+    function headingText() {
+        if (scoreTotal < 70) {
+            heading.innerHTML = 'Bad Day'
+        } else if (scoreTotal < 100) {
+            heading.innerHTML = 'Scraped By'
+        } else if (scoreTotal < 130) {
+            heading.innerHTML = 'Good Day'
+        } else if (scoreTotal >= 130) {
+            heading.innerHTML = 'Congrats! You Get an Egg!'
+        }
     }
 
     //audio shenanigans(mute buttons)
@@ -204,6 +207,20 @@ function main() {
             muteAllBtn.innerHTML = 'Mute All'
         }
     }
+
+    //reset button
+
+    let resetButton = document.createElement('button')
+    let reset = false
+    resetButton.innerHTML = "Reset"
+    resetButton.style.fontSize = '1em'
+    resetArea.append(resetButton)
+    resetButton.style.zIndex = '-5'
+    resetButton.addEventListener('click', function () {
+        reset = true
+        resetButton.style.zIndex = '-5'
+        return
+    })
 
     //sunset function
 
@@ -381,7 +398,7 @@ function main() {
     }
 
     //playbuttonpress---sequence of 10-random-fish, then game ends
-    
+
     async function play() {
         if (music.paused) {
             music.play()
@@ -399,6 +416,7 @@ function main() {
         await fishGenerator()
         await fishGenerator()
         await fishGenerator()
+        headingText()
         fishZone = document.querySelector('#five-of-nine')
         makeButton()
         btn.style.fontSize = '2em'
@@ -407,11 +425,12 @@ function main() {
         resetButton.style.zIndex = '-5'
         addClick(startGame)
     }
-    
+
+    //setting up new game
+
     async function startGame() {
         removeClick(startGame)
         resetButton.style.zIndex = '-5'
-        //setting up create button func
         iteration = 0
         sunset(iteration)
         smallCount = 0
@@ -423,11 +442,14 @@ function main() {
         mediumHTML.innerHTML = mediumCount
         largeHTML.innerHTML = largeCount
         readyUp()
+        heading.innerHTML = 'Reeling Reaction'
         play()
         await sleep(7000)
         reset = false
         resetButton.style.zIndex = '1'
     }
+
+    //function that starts the endless loop
 
     function startLoop() {
         removeClick(startLoop)
