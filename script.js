@@ -63,7 +63,7 @@ function main() {
     }
 
     function updateAndReset() {
-        scoreTotal = (smallCount * 8) + (mediumCount * 12) + (largeCount * 20)
+        scoreTotal = (smallCount * 8) + (mediumCount * 13) + (largeCount * 20)
         score.innerHTML = scoreTotal
         fishZone.style.backgroundColor = 'darkturquoise'
         tally.innerHTML = totalCaught + "/10"

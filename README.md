@@ -11,7 +11,7 @@
 
 My inspiration is that I've seen DnD games that have players put the entire story on hold to fish for a session.
 
--will have small, medium, and large fish, each giving 8lb., 12lb., and 20lb. respectivly.(math.random will determine which fish bites the line)
+-will have small, medium, and large fish, each giving 8lb., 13lb., and 20lb. respectivly.(math.random will determine which fish bites the line)
 
 -each fish will have a window of time(two setTimeouts) for you to press a button, and for when the fish gets away. The smaller the fish, the more time to press the button.
 
