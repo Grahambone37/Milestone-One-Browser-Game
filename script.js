@@ -418,12 +418,16 @@ function main() {
         await fishGenerator()
         headingText()
         fishZone = document.querySelector('#five-of-nine')
-        makeButton()
+        makeButton() 
         btn.style.fontSize = '2em'
         sunset(iteration)
         btn.innerHTML = 'Fish Another Day?'
         resetButton.style.zIndex = '-5'
         addClick(startGame)
+        if (reset == true) {
+            reset = false
+            startGame()
+        }
     }
 
     //setting up new game
