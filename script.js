@@ -133,11 +133,11 @@ function main() {
         if (soundMuted == false) {
             soundMuted = true;
             splashSound.volume = 0;
-            muteSoundBtn.innerHTML = '<del>Sound</del>'
+            muteSoundBtn.innerHTML = '<del>Splash</del>'
         } else {
             soundMuted = false;
             splashSound.volume = 0.5;
-            muteSoundBtn.innerHTML = 'Sound'
+            muteSoundBtn.innerHTML = 'Splash'
         }
         isAllMuted()
     }
