@@ -1,4 +1,3 @@
-
 * {
     text-align: center;
     font-family: cursive;
@@ -8,7 +7,14 @@ main {
     flex-flow: column nowrap
 }
 
-.third-of-pond, #scoreboard, .ninth-of-pond, .outside-verticle, h1, h2, .sky-sun-sky, #greenery {
+.third-of-pond,
+#scoreboard,
+.ninth-of-pond,
+.outside-verticle,
+h1,
+h2,
+.sky-sun-sky,
+#greenery {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -20,11 +26,13 @@ main {
     justify-content: center;
 }
 
-.third-of-pond, .ninth-of-pond {
+.third-of-pond,
+.ninth-of-pond {
     min-height: 17vh;
 }
 
-.outside-verticle, .top-of-pond {
+.outside-verticle,
+.top-of-pond {
     min-height: 5vh;
 }
 
@@ -91,7 +99,9 @@ main {
     border: 2vh ridge lawngreen;
 }
 
-body, h1, h2 {
+body,
+h1,
+h2 {
     margin: 0;
     padding: 0;
 }
@@ -100,6 +110,18 @@ button {
     background-color: lightblue;
     color: rgb(34, 63, 85);
     border-color: rgb(77, 42, 38);
-    border-style:double;
+    border-style: double;
     border-radius: 0.5em;
+}
+
+#pixabay-link {
+    justify-content: left;
+    align-items: flex-end;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: rgb(13, 42, 63);
 }
